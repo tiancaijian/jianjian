@@ -1,0 +1,436 @@
+#include<stdio.h>
+#include<string.h> 
+#include <stdlib.h>
+struct stu{
+int  ID;		//学号 
+char name[15];	//名字 
+int sex;	//计算机
+int grade;		//数学 
+int en;	//英语 
+}s[50];
+
+int n;
+int temp=1; //菜单结束判断
+int str=n; //结构体编号 
+
+
+int ji;//记录值 
+int dh=50;	
+
+void list(){int i;
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	for(i=0;s[i].ID!=0;i++){
+		if(s[i].grade!=-1){
+		
+		printf("%d        %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);
+		printf("\n");}
+	}
+	printf("\n");
+	printf("==-------------==------------==------------==------------==\n");
+	printf("\n");
+	printf("\n");
+} 
+//============↓↓↓↓↓↓↓====输入函数============↓↓↓↓↓↓=========== 
+void inquID(){	//输入学号 
+	int t;
+	scanf("%d",&t);
+	s[str].ID=t;
+} 
+void inquyear(){	//输入
+	int t;
+	scanf("%d",&t);
+	s[str].en=t;
+} 
+void inquName(){	//输入名字 
+	char cha[15];
+	scanf("%s",cha);
+	for(int i=0;i<15;i++){
+	s[str].name[i]=cha[i];
+	}
+} 
+void inquSex(){	//输入
+	int cha;
+	scanf("%d",&cha);
+	
+	s[str].sex=cha;
+	
+} 
+void inquGrade(){	//输入数学 
+	int g;
+	scanf("%d",&g);
+	s[str].grade=g;
+	
+	str++;
+	
+	
+}
+//============↓↓↓↓↓↓↓=========删除函数============↓↓↓↓↓↓===========  
+void delID(){//通过 ID 删除学生数学 
+	printf("请输入要删除数学学生的学号\n");
+	int inID;
+	int ty=0;
+	scanf("%d",&inID);
+	for(int i=0;i<=dh;i++){
+		if(s[i].ID==inID){
+		printf("删除结果为：\n");
+		s[i].grade=-1; 
+		printf("英语----------名字---------学号---------计算机---------数学\n");
+		printf("%d            %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);
+		printf("\n");
+		ty=1;
+		}
+	}
+	if(ty==0){
+		printf("该学生不存在\n"); 
+	}
+} 
+
+void delName(){
+	printf("请输入要删除数学学生的名字\n");
+	char inName[15];
+	int ty=0;
+	scanf("%s",&inName);
+	
+	for(int i=0;i<dh;i++){
+		if(strcmp(s[i].name,inName)==0){
+		printf("删除结果为：\n");
+		s[i].grade=-1; 
+		printf("英语----------名字---------学号---------计算机---------数学\n");
+		printf("%d            %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);
+		printf("\n");
+		ty=1;
+		}
+	}    
+	
+	if(ty==0){
+		printf("该学生不存在\n"); 
+	}
+	
+}
+//============↓↓↓↓↓↓↓=========查询函数============↓↓↓↓↓↓=========== 
+void inqID(){//根据 学号 查询 
+	printf("请输入学号\n");
+	int inID;
+	int ty=0;
+	scanf("%d",&inID);
+	for(int i=0;i<=dh;i++){   
+		if(s[i].ID==inID){
+			if(s[i].grade!=-1){
+			
+		printf("查询结果为：\n");
+		printf("英语----------名字---------学号---------计算机---------数学\n");
+		printf("%d            %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);
+		printf("\n");
+		ty=1;
+		break;}
+		}
+	}
+	if(ty==0){
+		printf("该学生不存在\n"); 
+	}
+	
+}
+
+void inqName(){//根据 名字 查询 
+		printf("请输入名字\n");
+	char inName[15];
+	int ty=0;
+	scanf("%s",&inName);
+	
+	for(int i=0;i<dh;i++){
+		if(strcmp(s[i].name,inName)==0){
+		printf("查询结果为：\n");
+		printf("英语----------名字---------学号---------计算机---------数学\n");
+		printf("%d            %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);
+		printf("\n");
+		ty=1;
+		}
+	}
+	if(ty==0){
+		printf("该学生不存在\n"); 
+	}
+} 
+
+
+//============↓↓↓↓↓↓↓=========修改函数============↓↓↓↓↓↓===========
+void reID(){
+	int inID;
+	printf("请输入要修改的值-学号\n"); 
+	scanf("%d",&inID);
+	printf("修改结果为：\n");
+	s[ji].ID=inID;
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	printf("%d            %s        %d           %d           %d",s[ji].en,s[ji].name,s[ji].ID,s[ji].sex,s[ji].grade);
+	printf("\n");
+}
+
+void reyear(){
+	int inID;
+	printf("请输入要修改的值-学号\n"); 
+	scanf("%d",&inID);
+	printf("修改结果为：\n");
+	s[ji].en=inID;
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	printf("%d            %s        %d           %d           %d",s[ji].en,s[ji].name,s[ji].ID,s[ji].sex,s[ji].grade);
+	printf("\n");
+}
+
+void reName(){
+	char inName[15];
+	printf("请输入要修改的值-名字\n"); 
+	scanf("%s",&inName);
+	printf("修改结果为：\n");
+	strcpy(s[ji].name,inName);
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	printf("%d            %s        %d           %d           %d",s[ji].en,s[ji].name,s[ji].ID,s[ji].sex,s[ji].grade);
+	printf("\n");
+}
+
+void reSex(){
+	int inSex;
+	printf("请输入要修改的值-计算机\n"); 
+	scanf("%d",&inSex);
+	printf("修改结果为：\n");
+	s[ji].sex=inSex;
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	printf("%d            %s        %d           %d           %d",s[ji].en,s[ji].name,s[ji].ID,s[ji].sex,s[ji].grade);
+	printf("\n");
+}
+
+
+void reGrade(){
+	int inGrade;
+	printf("请输入要修改的值-数学\n"); 
+	scanf("%d",&inGrade);
+	printf("修改结果为：\n");
+	s[ji].grade=inGrade;
+	printf("英语----------名字---------学号---------计算机---------数学\n");
+	printf("%d            %s        %d           %d           %d",s[ji].en,s[ji].name,s[ji].ID,s[ji].sex,s[ji].grade);
+	printf("\n");
+}
+
+void renum(){
+	list(); 
+	printf("请输入要修改学生的学号\n");
+	int inNum;
+	int ty=0;
+	scanf("%d",&inNum);
+	for(int i=0;i<=dh;i++){
+		if(s[i].ID==inNum){
+		printf("\n");
+		printf("你要修改的学生是：");
+		printf("\n");
+		printf("英语----------名字---------学号---------计算机---------数学\n");
+		printf("%d            %s        %d           %d           %d",s[i].en,s[i].name,s[i].ID,s[i].sex,s[i].grade);	
+		printf("\n");
+		printf("1.修改学号 2.修改名字 3.修改计算机 4.修改数学 5.修改英语\n");
+		ji=i; 
+		int x;
+		scanf("%d",&x);
+		switch(x){
+			case 1:
+				reID();
+				break;
+			case 2:
+				reName();
+				break;
+			case 3:
+				reSex();
+				break;
+			case 4: 
+				reGrade();
+				break;
+			case 5:
+				reyear();
+		} 
+		printf("\n");
+		ty=1;
+		}
+	}
+	if(ty==0){
+		printf("该学生不存在\n"); 
+	}
+	
+} 
+//----------------------------------求平均分----------------------------
+void aver()
+{
+	printf("请输入学号\n");
+	int inID;
+	float ty=0;
+	scanf("%d",&inID);
+	for(int i=0;i<=dh;i++){   
+		if(s[i].ID==inID){
+		ty=(s[i].en+s[i].sex+s[i].grade)/3;
+		printf("学号%d	平均分%f",s[i].ID,ty);
+		}
+}
+}
+//---------------------------及格-------------------------
+void ok()
+{
+int a;
+int n=0,b=0,c=0;
+ 
+printf("1-英语，2-计算机，3-数学");
+scanf("%d",&a);
+if(a==1)
+{for(int i=0;s[i].ID!=0;i++)
+{
+		if(s[i].grade!=-1)
+		{
+			if(s[i].en<60&&s[i].en>0)
+			{printf("学号%d		英语%d\n",s[i].ID,s[i].en);
+			n++;
+			}
+		}
+}printf("人数%d\n",n);
+}
+else if(a==2)
+{for(int i=0;s[i].ID!=0;i++)
+{
+		if(s[i].grade!=-1)
+		{
+			if(s[i].sex<60&&s[i].sex>0)
+			{printf("学号%d		计算机%d\n",s[i].ID,s[i].sex);
+			b++;
+			}
+		}
+}printf("人数%d\n",b);
+}
+else
+{for(int i=0;s[i].ID!=0;i++)
+{
+		if(s[i].grade!=-1)
+		{
+			if(s[i].grade<60&&s[i].grade>0)
+			{printf("学号%d		数学%d\n",s[i].ID,s[i].grade);
+			c++;
+			}
+		}
+}printf("人数%d\n",c);
+}
+}
+//===========保存函数-------------------------------------------------------------------
+void save()
+{
+	FILE * fp;
+fp=fopen("student.txt","w");
+for(int i=0;i<=(str);i++)
+{
+	fwrite(&s[i],sizeof(struct stu),1,fp);}
+fclose(fp);
+}
+//-------------------读入文件-----------------------------------------------------------------
+void read()
+{
+		FILE * fp;
+fp=fopen("student.txt","r");
+for(int i=0;i<50;i++)
+{
+	fread(&s[i],sizeof(struct stu),1,fp);}
+fclose(fp);
+	return;
+}
+//===========界面=======================================================
+void menu(){
+	while(temp){
+	printf("\t\t》》》学生管理系统《《《\n");
+	printf("=========================================================\n");
+	printf("*\t1.输入学生\t\t2.删除学生\t\t*\n");
+	printf("*\t3.查询学生\t\t4.修改学生\t\t*\n");
+	printf("*\t5.列出所有学生\t\t6.保存学生成绩\t\t*\n");
+	printf("*\t7.退出系统    \t\t8.求平均分              \t\t*\n");
+	printf("*\t9.求不及格\n");
+	printf("=========================================================\n");
+	int i; 
+	scanf("%d",&i); 
+	switch(i){
+		case 1 :							
+			printf("请输入学生学号\n");
+			inquID();//输入学号 
+			printf("请输入学生名字\n");
+			inquName();//输入名字 
+			printf("请输入学生英语\n");
+			inquyear();
+			printf("请输入学生计算机\n");
+			inquSex(); //输入计算机 
+			printf("请输入学生数学\n");
+			inquGrade();//输入成绩 
+
+			break;
+		case 2 :							
+			int x; 
+			printf("++++++++++删除学生成绩++++++++++++\n");
+			printf("==================================\n");
+			printf("--------1.输入学号删除------------\n");
+			printf("--------2.输入名字删除------------\n");
+			printf("==================================\n");
+			scanf("%d",&x);
+			if(x==1){
+				delID(); //通过学号 删除学生成绩 
+			}else if(x==2){
+				delName(); //通过名字 删除学生成绩 
+			}
+			break;
+		case 3 :							 
+			int c; 
+			printf("++++++++++查询学生成绩++++++++++++\n");
+			printf("==================================\n");
+			printf("--------1.输入学号查询------------\n");
+			printf("--------2.输入名字查询------------\n");
+			printf("==================================\n");
+			scanf("%d",&c);
+			if(c==1){
+				inqID(); 	//通过 学号 查询 
+			}else if(c==2){
+				inqName(); 
+			} 
+			break;
+		case 4 : 					
+			int xg; 
+			printf("\t\t++++++++++修改学生成绩++++++++++++\n");
+			printf("\t\t以下是当前学生列表\n");
+			renum();
+			//修改 ;
+			break;
+		case 5 : 
+			list();
+			break;	
+		case 6 :
+			save();
+			printf("成功保存\n");
+			
+			break;
+		case 7:
+		 temp=0;
+		 printf("您已安全退出\n");
+		 break;
+		 case 8:
+		aver();
+		break;
+		case 9:
+		ok();
+		break;
+	}
+	menu();
+	}
+} 
+int main(){void read();
+read();
+int e=0;int pass=666,word;
+while(s[e].ID!=0) 
+{e=e+1;}
+n=e;
+str=n;
+for(int i=0;i<50;i++)
+{
+printf("请输入密码：");
+scanf("%d",&word);
+
+if(word==pass)
+{menu();i=50;
+}
+}	
+	return 0;
+}
